@@ -28,7 +28,7 @@ db.collection('Users').insertOne({
     return console.log('Unable to insert user', err);
   }
 
-  console.log(result.ops);
+  console.log(result.ops[0]._id.getTimestamp());
 });
 
   client.close(); //updates for MongoDB 3.0+
