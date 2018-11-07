@@ -1,4 +1,13 @@
-const MongoClient = require('mongodb').MongoClient;
+// const MongoClient = require('mongodb').MongoClient;
+const {MongoClient, ObjectID} = require('mongodb');
+
+// var obj = new ObjectID();
+// console.log(obj);
+
+// var user = {name: 'Ariel', age: 25};
+// var {name} = user;
+//
+// console.log(name);
 
 MongoClient.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true }, (err, client) => {
   if (err) {
@@ -19,17 +28,17 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true
   //
   //   console.log(JSON.stringify(result.ops, undefined, 2));
   // });
-db.collection('Users').insertOne({
-  name: 'Ariel',
-  age: 25,
-  location: 'Reno'
-}, (err, result) => {
-  if (err) {
-    return console.log('Unable to insert user', err);
-  }
-
-  console.log(result.ops[0]._id.getTimestamp());
-});
+// db.collection('Users').insertOne({
+//   name: 'Ariel',
+//   age: 25,
+//   location: 'Reno'
+// }, (err, result) => {
+//   if (err) {
+//     return console.log('Unable to insert user', err);
+//   }
+//
+//   console.log(result.ops[0]._id.getTimestamp());
+// });
 
   client.close(); //updates for MongoDB 3.0+
 });
