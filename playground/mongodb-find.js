@@ -8,15 +8,14 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true
 
   console.log('Connected to MongoDB server');
 
+  const db = client.db('TodoApp'); //updates for MongoDB 3.0+
+
   db.collection('Todos').find().toArray().then((docs) => {
     console.log('Todos');
-    consoloe.log(JSON.stringify(docs, undefined, 2));
+    console.log(JSON.stringify(docs, undefined, 2));
   }, (err) => {
     console.log('unable to fetch todos', err);
   });
 
-  const db = client.db('TodoApp'); //updates for MongoDB 3.0+
-
-
-  client.close(); //updates for MongoDB 3.0+
+  // client.close(); //updates for MongoDB 3.0+
 });
