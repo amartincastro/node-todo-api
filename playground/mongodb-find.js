@@ -10,14 +10,21 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true
 
   const db = client.db('TodoApp'); //updates for MongoDB 3.0+
 
-  db.collection('Todos').find({
-    _id: new ObjectID('IDHERE')
-  }).toArray().then((docs) => {
-    console.log('Todos');
-    console.log(JSON.stringify(docs, undefined, 2));
+  // db.collection('Todos').find({
+  //   _id: new ObjectID('IDHERE')
+  // }).toArray().then((docs) => {
+  //   console.log('Todos');
+  //   console.log(JSON.stringify(docs, undefined, 2));
+  // }, (err) => {
+  //   console.log('unable to fetch todos', err);
+  // });
+
+  db.collection('Todos').find().count().then((count) => {
+    console.log(`Todos count: ${count}`);
   }, (err) => {
     console.log('unable to fetch todos', err);
   });
+
 
   // client.close(); //updates for MongoDB 3.0+
 });
