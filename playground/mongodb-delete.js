@@ -14,11 +14,15 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true
 // });
 
 // deleteOne
-client.collection('Todos').deleteOne({text: 'Eat lunch'}).then((result) => {
-  console.log(result);
-});
+// client.collection('Todos').deleteOne({text: 'Eat lunch'}).then((result) => {
+//   console.log(result);
+// });
 
 // findOneAndDelete
+client.collection('Todos').findOneAndDelete({completed: false}).then((result) => {
+  console.log(result)
+});
+
 
   // client.close(); //updates for MongoDB 3.0+
 });
