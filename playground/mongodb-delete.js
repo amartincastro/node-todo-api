@@ -19,10 +19,17 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', { useNewUrlParser: true
 // });
 
 // findOneAndDelete
-client.collection('Todos').findOneAndDelete({completed: false}).then((result) => {
-  console.log(result)
-});
+// client.collection('Todos').findOneAndDelete({completed: false}).then((result) => {
+//   console.log(result)
+// });
 
+// client.collection('Users').deleteMany({name: 'Ariel'});
+
+client.collection('Users').findOneAndDelete({
+  _id: new ObjectID("5be368dcb659b54a9e849a50")
+}).then((results) => {
+  console.log(JSON.stringify(results, undefined, 2));
+});
 
   // client.close(); //updates for MongoDB 3.0+
 });
