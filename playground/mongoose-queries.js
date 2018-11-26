@@ -1,7 +1,7 @@
 const {mongoose} = require ('./../server/db/mongoose');
 const {Todo} = require('./../server/models/todo');
 
-var id = '5bf3549be7be03901f529006';
+var id = '6bf3549be7be03901f529006';
 
 Todo.find({
   _id: id
@@ -16,5 +16,8 @@ Todo.findOne({
 });
 
 Todo.findById(id).then((todo) => {
+  if (!todo) {
+    return console.log('Id not found');
+  }
   console.log('Todo By Id', todo);
 });
