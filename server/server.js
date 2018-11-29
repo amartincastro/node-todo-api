@@ -62,8 +62,24 @@ Todo.findById(id).then((todo) => {
 });
 
 app.delete('/todos/:id', (req, res) => {
-  //get the ID
+
+  var id = req.params.id;
   // validate ID/. Not valid? return 404
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send();
+  }
+
+  Todo.findByIdAndRemove(id).then((todo) => {
+    if (!todo) {
+      return res.status(404).send();
+    }
+
+    res.send(todo);
+  }).catch((e) => {
+    res.status(400).send();
+  });
+
+
 
   //remove todo by id using findOneAndRemove. If error, send back 400 with empty body. If no doc, send 404. If doc, send doc back with a 200
 
