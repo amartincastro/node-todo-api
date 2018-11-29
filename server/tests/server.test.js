@@ -103,7 +103,21 @@ describe('GET /todos/:id', () => {
 
 describe('DELETE /todos/:id', () => {
   it('Should remove a todo', (done) => {
+    var hexId = todos[1]._id.toHexString();
 
+    request(app)
+      .delete(`/todos/${hexId}`)
+      .expect(200)
+      .exect((res) => {
+        expect(res.body.todo._id).toBe(hexId);
+      })
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+
+        // query databse using findById
+      });
   });
 
   it('should return 404 if todo not found', () => {
