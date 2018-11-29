@@ -59,8 +59,16 @@ Todo.findById(id).then((todo) => {
     // if todo success - send it back
     // if no todo - send 404 with empty body
     // 400 - send empty body
+});
+
+app.delete('/todos/:id', (req, res) => {
+  //get the ID
+  // validate ID/. Not valid? return 404
+
+  //remove todo by id using findOneAndRemove. If error, send back 400 with empty body. If no doc, send 404. If doc, send doc back with a 200
 
 });
+
 
 app.listen(port, () => {
   console.log(`Started up at port ${port}`)
