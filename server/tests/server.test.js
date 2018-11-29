@@ -100,3 +100,17 @@ describe('GET /todos/:id', () => {
       .end(done);
   });
 });
+
+describe('DELETE /todos/:id', () => {
+  it('Should remove a todo', (done) => {
+
+  });
+
+  it('should return 404 if todo not found', () => {
+
+  });
+
+  it('should return 404 if object id is invalid', () => {
+
+  });
+})
