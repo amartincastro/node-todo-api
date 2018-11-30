@@ -116,15 +116,26 @@ describe('DELETE /todos/:id', () => {
           return done(err);
         }
 
-        // query databse using findById
+        Todo.findById(hexId.then((todo) => {
+          expect(todo).toNotExist();
+          done();
+        }).catch((e) => done(e));
       });
   });
 
   it('should return 404 if todo not found', () => {
+    var hexID = new ObjectID().toHexString();
 
+    request(app)
+      .delete(`/todos/${hexID}`)
+      .expect(404)
+      .end(done);
   });
 
   it('should return 404 if object id is invalid', () => {
-
+    request(app)
+      .delete('/todos/123abc')
+      .expect(404)
+      .end(done);
   });
 })
