@@ -1,7 +1,8 @@
 //library imports
-var express = require('express');
-var bodyParser = require('body-parser');
-var {ObjectID} = require('mongodb');
+const _ = require ('lodash');
+const express = require('express');
+const bodyParser = require('body-parser');
+const {ObjectID} = require('mongodb');
 
 //local imports
 var {mongoose} = require ('./db/mongoose');
@@ -79,12 +80,20 @@ app.delete('/todos/:id', (req, res) => {
     res.status(400).send();
   });
 
-
-
   //remove todo by id using findOneAndRemove. If error, send back 400 with empty body. If no doc, send 404. If doc, send doc back with a 200
 
 });
 
+app.patch('/todos/:id', (req, res) => {
+  var id = req.params.id;
+  var body = _.pick(req.body, ['text', 'completed']);
+
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send();
+  }
+
+  
+});
 
 app.listen(port, () => {
   console.log(`Started up at port ${port}`)
